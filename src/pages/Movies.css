@@ -14,12 +14,12 @@
 .movie-item {
   position: relative;
   width: 20%;
-  transition: transform 0.2s ease-in-out, opacity 0.3s ease-in-out;
-  margin: 5px 5px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  margin: 5px 0px;
 }
 
 .movie-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
   opacity: 0.9;
   z-index: 1;
 }
@@ -28,4 +28,19 @@
   height: 100%;
   width: 100%;
   border: 5px solid black;
+  border-radius: 5px;
+}
+
+.input {
+  width: 500px;
+  padding: 10px;
+  font-size: 25px;
+  margin-bottom: 30px;
+  background-color: #f2e9e4;
+  border: 1px;
+  border-radius: 5px;
+}
+
+.input:focus {
+  outline: none;
 }

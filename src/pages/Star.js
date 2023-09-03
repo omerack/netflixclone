@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Star.css";
 
-function Star() {
+function Star({ movieId }) {
   const [click, setClick] = useState("⭐");
 
   const toggleClick = () => {

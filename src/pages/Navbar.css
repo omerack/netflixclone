@@ -1,0 +1,10 @@
+.navbar a {
+  display: flexbox;
+  color: #fff;
+}
+
+.navbar li {
+  display: inline;
+  margin: 5px;
+  font-size: 25px;
+}
