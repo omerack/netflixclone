@@ -21,8 +21,7 @@ function Movies() {
       });
   }
 
-  function handleChange(e) {
-    setMovieInput(e.target.value);
+  function searchedMovies() {
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?query=${movieInput}&api_key=ededa9be17da78a3b91e37d61a4008b1`
@@ -36,9 +35,17 @@ function Movies() {
       });
   }
 
+  function handleChange(e) {
+    setMovieInput(e.target.value);
+  }
+
   useEffect(() => {
-    popularMovies();
-  }, []);
+    if (movieInput === "") {
+      popularMovies();
+    } else {
+      searchedMovies();
+    }
+  }, [movieInput]);
 
   return (
     <div className="movies-container">
