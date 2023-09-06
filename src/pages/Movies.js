@@ -31,7 +31,6 @@ function Movies() {
   function handleChange(e) {
     setMovieInput(e.target.value);
   }
-
   return (
     <div className="movies-container">
       <Navbar />
