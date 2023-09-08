@@ -1,25 +1,23 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Star.css";
 
 function Star({ movieId }) {
   useEffect(() => {
-    const storedStars = localStorage.getItem(`${movieId}`);
-    if (storedStars !== null) {
-      setClick(storedStars === true ? "🌟" : "⭐");
-      console.log(storedStars);
-    }
+    const data = localStorage.getItem(`${movieId}`);
+    setClick(JSON.parse(data));
   }, [movieId]);
 
-  const [click, setClick] = useState("⭐");
+  const [click, setClick] = useState(true);
 
   const toggleClick = () => {
-    setClick(() => (click === "⭐" ? "🌟" : "⭐"));
-    localStorage.setItem(`${movieId}`, click.toString());
+    const clickState = !click;
+    setClick(clickState);
+    localStorage.setItem(`star_${movieId}`, JSON.stringify(clickState));
   };
 
   return (
     <button className="star" onClick={toggleClick}>
-      {click}
+      {click ? "⭐" : "🌟"}
     </button>
   );
 }
