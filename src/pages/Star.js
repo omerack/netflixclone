@@ -2,22 +2,28 @@ import { useEffect, useState } from "react";
 import "./Star.css";
 
 function Star({ movieId }) {
+  const [click, setClick] = useState(false);
+
   useEffect(() => {
     const data = localStorage.getItem(`${movieId}`);
-    setClick(JSON.parse(data));
+    if (data) {
+      setClick(JSON.parse(data));
+    }
   }, [movieId]);
-
-  const [click, setClick] = useState(true);
 
   const toggleClick = () => {
     const clickState = !click;
     setClick(clickState);
-    localStorage.setItem(`star_${movieId}`, JSON.stringify(clickState));
+    if (clickState) {
+      localStorage.setItem(`${movieId}`, JSON.stringify(clickState));
+    } else {
+      localStorage.removeItem(`${movieId}`, JSON.stringify(clickState));
+    }
   };
 
   return (
     <button className="star" onClick={toggleClick}>
-      {click ? "⭐" : "🌟"}
+      {click ? "🌟" : "⭐"}
     </button>
   );
 }

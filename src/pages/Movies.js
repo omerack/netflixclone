@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./Movies.css";
 import Star from "./Star";
 import Navbar from "./Navbar";
+import MovieInfo from "./MovieInfo";
 
 function Movies() {
   const [presentedMovies, setPresentedMovies] = useState([]);
@@ -48,7 +49,8 @@ function Movies() {
               src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
               alt=""
             />
-            <Star movieId={movie.id} />
+            <MovieInfo info={movie} />
+            <Star movieId={movie.poster_path} />
           </div>
         ))}
       </div>

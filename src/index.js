@@ -15,6 +15,7 @@ const router = createBrowserRouter([
     path: "favorite-movies",
     element: <FavoriteMovies />,
   },
+8
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
