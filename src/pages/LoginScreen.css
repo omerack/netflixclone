@@ -1,0 +1,19 @@
+.login-form {
+  height: 100vh;
+  background-color: #22223b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form h2 {
+  color: white;
+}
+
+.login-form button {
+  margin-top: 20px;
+  width: 100px;
+  height: 30px;
+  font-size: 10px;
+}

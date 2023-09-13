@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import "./Star.css";
+import { addDoc, deleteDoc, doc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
 function Star({ movieId }) {
   const [click, setClick] = useState(false);
+
+  const movieCollectionRef = collection(db, "movies");
 
   useEffect(() => {
     const data = localStorage.getItem(`${movieId}`);
@@ -11,12 +15,15 @@ function Star({ movieId }) {
     }
   }, [movieId]);
 
-  const toggleClick = () => {
+  const toggleClick = async () => {
     const clickState = !click;
     setClick(clickState);
     if (clickState) {
+      await addDoc(movieCollectionRef, { key: movieId, value: clickState });
       localStorage.setItem(`${movieId}`, JSON.stringify(clickState));
     } else {
+      const movieDoc = doc(db, "movies", movieId);
+      await deleteDoc(movieDoc);
       localStorage.removeItem(`${movieId}`, JSON.stringify(clickState));
     }
   };
