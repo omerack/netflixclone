@@ -1,30 +1,32 @@
 import { useEffect, useState } from "react";
 import "./Star.css";
-import { addDoc, deleteDoc, doc, collection } from "firebase/firestore";
+import { getDoc, doc, addDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 function Star({ movieId }) {
-  const [click, setClick] = useState(false);
-
-  const movieCollectionRef = collection(db, "movies");
+  const [click, setClick] = useState(movieId);
 
   useEffect(() => {
-    const data = localStorage.getItem(`${movieId}`);
-    if (data) {
-      setClick(JSON.parse(data));
-    }
+    const fetchFavorite = async () => {
+      const movieDocRef = doc(db, "movies", movieId);
+      const movieSnapshot = await getDoc(movieDocRef);
+
+      if (movieSnapshot.exists()) {
+        const movieData = movieSnapshot.data();
+        setClick(movieData.favorite);
+      }
+    };
+    fetchFavorite();
   }, [movieId]);
 
   const toggleClick = async () => {
+    const movieDocRef = doc(db, "movies", movieId);
     const clickState = !click;
     setClick(clickState);
     if (clickState) {
-      await addDoc(movieCollectionRef, { key: movieId, value: clickState });
-      localStorage.setItem(`${movieId}`, JSON.stringify(clickState));
+      await addDoc(movieDocRef);
     } else {
-      const movieDoc = doc(db, "movies", movieId);
-      await deleteDoc(movieDoc);
-      localStorage.removeItem(`${movieId}`, JSON.stringify(clickState));
+      await deleteDoc(movieDocRef);
     }
   };
 

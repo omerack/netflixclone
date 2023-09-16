@@ -1,13 +1,11 @@
-// import { FirebaseError } from "firebase/app";
+import MovieDirector from "./MovieDirector";
 import "./App.css";
-import Movies from "./pages/Movies";
-// import LoginScreen from "./pages/LoginScreen";
-// import SignUp from "./pages/SignUp";
+;
 
 function App() {
   return (
     <div className="App">
-      <Movies />
+      <MovieDirector />
     </div>
   );
 }
