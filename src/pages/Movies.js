@@ -5,7 +5,7 @@ import Star from "./Star";
 import Navbar from "./Navbar";
 import MovieInfo from "./MovieInfo";
 
-function Movies({ movieList, favoriteMovies }) {
+function Movies() {
   const [presentedMovies, setPresentedMovies] = useState([]);
   const [movieInput, setMovieInput] = useState("");
 
@@ -32,7 +32,6 @@ function Movies({ movieList, favoriteMovies }) {
   function handleChange(e) {
     setMovieInput(e.target.value);
   }
-
   return (
     <div className="movies-container">
       <Navbar />
@@ -51,7 +50,7 @@ function Movies({ movieList, favoriteMovies }) {
               alt=""
             />
             <MovieInfo info={movie} />
-            <Star movieList={movieList} />
+            <Star movieId={movie.poster_path} />
           </div>
         ))}
       </div>

@@ -2,21 +2,22 @@ import Navbar from "./Navbar";
 import Star from "./Star";
 import "./FavoriteMovies.css";
 
-function FavoriteMovies({ movieList }) {
+function FavoriteMovies() {
+  const favoriteMoviesId = Object.keys(localStorage);
   return (
     <div className="img-container">
       <Navbar />
       <div className="img-list">
-        {movieList.map(
+        {favoriteMoviesId.map(
           (image) =>
             image && (
-              <div className="img-item" key={image.id}>
+              <div className="img-item">
                 <img
                   className="img"
-                  src={`https://image.tmdb.org/t/p/original/${image.img}`}
+                  src={`https://image.tmdb.org/t/p/original/${image}`}
                   alt=""
                 />
-                <Star movieId={image.id} />
+                <Star movieId={image} />
               </div>
             )
         )}
